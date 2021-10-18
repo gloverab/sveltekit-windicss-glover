@@ -1,5 +1,5 @@
 {
-  "name": "alexsveltekit-windicss-glover-template",
+  "name": "alex-glover-producer",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
