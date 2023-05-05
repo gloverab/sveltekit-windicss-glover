@@ -5,12 +5,19 @@
   export let item: number
 
   let width
-  let height
-  let hover
+  let frameHeight
+  let hover = false
   let show = false
+  let detailsHeight
+
   const number = index + 1
   
-  $:isLandscapeFrame = width > height
+  $: isLandscapeFrame = width > frameHeight
+
+  let lineHeight
+  let overflowSize = 0
+
+  $: overflowSize = detailsHeight > frameHeight * .71 ? detailsHeight + 10 - frameHeight * .71 : 0
 
   onMount(() => {
     show = true
@@ -56,74 +63,121 @@
   on:mouseenter={handleHoverIn}
   on:mouseleave={() => hover = false}
   bind:clientWidth={width}
-  bind:clientHeight={height}
+  bind:clientHeight={frameHeight}
 >
   <img class='{isLandscapeFrame ? 'w-full h-auto max-h-none' : 'h-full w-auto max-w-none'} transform duration-400 {hover ? 'scale-110' : 'scale-100'}' alt='album cover' src={item.image} />
-  <div class='absolute top-0 left-0 flex justify-center items-center h-full w-full bg-black bg-opacity-0 opacity-0 duration-300 p-4 hover:opacity-100 hover:bg-opacity-60'>
-    <div class='flex justify-center items-top w-full h-5/7 mt-2/7'>
-      <span
-        class='
-        text-white
-          text-xl
-          font-thin
-          text-right
+  <div class='absolute top-0 left-0 flex justify-center items-center h-full w-full bg-black {hover ? 'bg-opacity-60 opacity-100' : 'bg-opacity-0 opacity-0'} duration-300 p-4'>
+    <div style="transform: translateY(-{overflowSize}px)" class='w-full h-6/7 mt-1/7'>
+      <div class='flex justify-center items-top h-full'>
+        <span
+          class='
+          text-white
+            text-xl
+            font-thin
+            text-right
+            transform
+            duration-700
+            w-1/2
+            {hover ? '-translate-x-1.5 -translate-y-1' : 'translate-x-0'}
+          '
+        >
+          {item.artistName}
+        </span>
+        <div class='h-full w-0.25 bg-white bg-opacity-100 transform origin-top duration-700 {hover ? 'scale-y-100' : 'scale-y-0'}' />
+        <div class='
           transform
           duration-700
-          w-1/2
-          {hover ? '-translate-x-1.5 -translate-y-1' : 'translate-x-0'}
-        '
-      >
-        {item.artistName}
-      </span>
-      <div class='h-full w-0.25 bg-white bg-opacity-100 transform origin-top duration-700 {hover ? 'scale-y-100' : 'scale-y-0'}' />
-      <div class='
-        transform
-        duration-700
-        flex
-        flex-col
-        justify-between
-        h-full
-        {item.name.length > 20 ? '' : 'w-1/2'}
-        text-white
-        {hover ? 'translate-x-1.5 -translate-y-1' : 'translate-x-0'}'
-      >
-        <div>
-          <p
-            class='
-              text-xl
-              text-left
-            '>
-            {item.name}
-          </p>
+          flex
+          flex-col
+          justify-between
+          h-full
+          space-y-1
+          flex-1
+          overflow-show
+          {item.name.length > 20 ? '' : 'w-1/2'}
+          text-white
+          {hover ? 'translate-x-1.5 -translate-y-1' : 'translate-x-0'}'
+        >
+          <div>
+            <p
+              class='
+                text-xl
+                text-left
+              '>
+              {item.name}
+            </p>
 
-          <p
-            class='
-              text-xs
-              text-left
-              font-thin
-            '>
-            {item.releaseType}
-          </p>
-        </div>
+            <p
+              class='
+                text-xs
+                text-left
+                font-thin
+              '>
+              {item.releaseType}
+            </p>
+          </div>
 
-        <div class='delay-200 duration-300 {hover ? 'opacity-100' : 'opacity-0'}'>
-          <p class='text-sm font-light'>
-            Released:
-          </p>
-          <p
-            class='
-              text-xs
-              text-left
-              font-thin
-            '>
-            {item.releaseDate}
-          </p>
+          <div class='delay-200 duration-300 {hover ? 'opacity-100' : 'opacity-0'}'>
+            <p class='text-sm font-light'>
+              Released:
+            </p>
+            <p
+              class='
+                text-xs
+                text-left
+                font-thin
+              '>
+              {item.releaseDate}
+            </p>
+          </div>
+        
+          <div class='delay-400 duration-300 {hover ? 'opacity-100' : 'opacity-0'}'>
+            <p class='text-sm font-light'>Credits:</p>
+            <p class='text-xs font-thin italic'>{item.tags}</p>
+          </div>
         </div>
-      
-        <div class='delay-400 duration-300 {hover ? 'opacity-100' : 'opacity-0'}'>
-          <p class='text-sm font-light'>Credits:</p>
-          <p class='text-xs font-thin italic'>{item.tags}</p>
-        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='absolute w-1/2'>
+    <div bind:clientHeight={detailsHeight} class='invisible flex flex-col space-y-1'>
+      <div>
+        <p
+          class='
+            text-xl
+            text-left
+          '>
+          {item.name}
+        </p>
+
+        <p
+          class='
+            text-xs
+            text-left
+            font-thin
+          '>
+          {item.releaseType}
+        </p>
+      </div>
+
+      <div>
+        <p class='text-sm font-light'>
+          Released:
+        </p>
+        <p
+          class='
+            text-xs
+            text-left
+            font-thin
+          '>
+          {item.releaseDate}
+        </p>
+      </div>
+
+      <div>
+        <p class='text-sm font-light'>Credits:</p>
+        <p class='text-xs font-thin italic'>{item.tags}</p>
       </div>
     </div>
   </div>

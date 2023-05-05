@@ -2,6 +2,13 @@ import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
 	theme: {
+		filter: {
+      none: 'none',
+      grayscale: 'grayscale(1)',
+      invert: 'invert(1)',
+      sepia: 'sepia(1)',
+			contrast: 'contrast(1.2)'
+    },
 		extend: {
 			backgroundImage: () => ({
 				'primary-gradient': 'linear-gradient(to right, #d3959b, #bfe6ba)',
@@ -13,5 +20,7 @@ export default defineConfig({
 		}
 	},
 	variants: {},
-	plugins: [],
+	plugins: [
+		require('windicss/plugin/filters'),
+	],
 });

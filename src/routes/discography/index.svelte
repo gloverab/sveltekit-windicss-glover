@@ -1,11 +1,60 @@
-<script lang='ts' context='module'>
+
+
+<script lang='ts'>
+  import WorkItem from "$src/components/WorkItem.svelte";
+
   const items = [
+    {
+      name: 'Rememory',
+      releaseType: 'Album',
+      artistName: 'It Was A Good Dream',
+      releaseDate: 'March 2023',
+      tags: 'co-producer / mixing / artist / writer',
+      image: 'https://www.dropbox.com/s/xcpcq01ud40tq3t/Rememory-Preview.png?raw=1',
+      href: '#'
+    },
+    {
+      name: 'You Never Say Goodbye When You Leave',
+      releaseType: 'Album',
+      artistName: 'Pocket Vinyl',
+      releaseDate: 'February 2023',
+      tags: 'producer / mixing engineer / drum programming / guitar / bass',
+      image: 'https://www.dropbox.com/s/6cnx6yzvwkhs7vi/a0390000665_10.jpeg?raw=1',
+      href: '#'
+    },
+    {
+      name: 'Night and Day',
+      releaseType: 'Single',
+      artistName: 'Josh Knowles',
+      releaseDate: 'December 2022',
+      tags: 'producer / mixing engineer',
+      image: 'https://www.dropbox.com/s/pikw88398qehh6b/JK-ND-Digital-Art-med.jpg?raw=1',
+      href: '#'
+    },
+    {
+      name: 'Gift of Conviction',
+      releaseType: 'Single',
+      artistName: 'Closed Loop & Ellimist',
+      releaseDate: 'August 2022',
+      tags: 'producer / mixing engineer / artist / remixer',
+      image: 'https://www.dropbox.com/s/fi6k0mz5jpuzf0d/Gift%20of%20Conviction%20Artwork%20%28small%29.png?raw=1',
+      href: '#'
+    },
+    {
+      name: 'No Extinguishing',
+      releaseType: 'Single',
+      artistName: 'Josh Knowles',
+      releaseDate: 'June 2022',
+      tags: 'producer / mixing engineer',
+      image: 'https://www.dropbox.com/s/odjdrt6sjuuzvqo/JK-NE.jpg?raw=1',
+      href: '#'
+    },
     {
       name: 'Move',
       releaseType: 'Single',
       artistName: 'Ellimist',
       releaseDate: 'June 2021',
-      tags: 'artist / writer / producer / mixing',
+      tags: 'producer / mixing engineer / artist / writer',
       image: 'https://www.dropbox.com/s/c9f2hymej5btgul/ellimist-move.jpg?raw=1',
       href: '#'
     },
@@ -41,7 +90,7 @@
       releaseType: 'Single',
       artistName: 'Wyn Doran',
       releaseDate: 'May 2021',
-      tags: 'producer / mixing / co-writer',
+      tags: 'producer / mixing engineer / co-writer',
       image: 'https://www.dropbox.com/s/gz04gv8ax49ujso/wyn-doran-concern.jpeg?raw=1',
       href: '#'
     },
@@ -59,7 +108,7 @@
       releaseType: 'Album',
       artistName: 'Pocket Vinyl',
       releaseDate: 'November 2020',
-      tags: 'producer / mixing / guitar / bass / drums / programming',
+      tags: 'producer / mixing engineer / guitar / bass / drums / programming',
       image: 'https://www.dropbox.com/s/5q50etv5eire2vd/pocket-vinyl-winter-person.jpg?raw=1',
       href: '#'
     },
@@ -86,7 +135,7 @@
       releaseType: 'Single',
       artistName: 'Wyn Doran',
       releaseDate: 'April 2020',
-      tags: 'producer / mixing',
+      tags: 'producer / mixing engineer',
       image: 'https://www.dropbox.com/s/mmvbn3xgw1y9zfs/wyn-doran-cigarettes.jpeg?raw=1',
       href: '#'
     },
@@ -95,7 +144,7 @@
       releaseType: 'Single',
       artistName: 'Killer Instinct',
       releaseDate: 'April 2020',
-      tags: 'artist / producer / mixing / mastering',
+      tags: 'producer / mixing / mastering',
       image: 'https://www.dropbox.com/s/5dv9dtkxt48wme0/killer-instinct-unreal.jpg?raw=1',
       href: '#'
     },
@@ -104,7 +153,7 @@
       releaseType: 'Single',
       artistName: 'It Was A Good Dream',
       releaseDate: 'March 2020',
-      tags: 'artist / writer / producer / mixing',
+      tags: 'producer / mixing / artist / writer',
       image: 'https://www.dropbox.com/s/u4sf9j5phjg5ho1/iwagd%20-%20descend.jpeg?raw=1',
       href: '#'
     },
@@ -113,54 +162,11 @@
       releaseType: 'Single',
       artistName: 'Annabelle Lee',
       releaseDate: 'February 2020',
-      tags: 'mixing',
+      tags: 'mixing engineer',
       image: 'https://www.dropbox.com/s/0worka8asz8gybo/annabel-lee-make-out.jpg?raw=1',
       href: '#'
     },
-    {
-      name: 'Descend / Sustain / Surpress',
-      releaseType: 'Single',
-      artistName: 'It Was A Good Dream',
-      releaseDate: 'February 2020',
-      tags: 'artist / writer / producer / mixing engineer',
-      image: 'https://www.dropbox.com/s/u4sf9j5phjg5ho1/iwagd%20-%20descend.jpeg?raw=1',
-      href: '#'
-    },
-    {
-      name: 'Descend / Sustain / Surpress',
-      releaseType: 'Single',
-      artistName: 'It Was A Good Dream',
-      releaseDate: 'February 2020',
-      tags: 'artist / writer / producer / mixing engineer',
-      image: 'https://www.dropbox.com/s/u4sf9j5phjg5ho1/iwagd%20-%20descend.jpeg?raw=1',
-      href: '#'
-    },
-    {
-      name: 'Descend / Sustain / Surpress',
-      releaseType: 'Single',
-      artistName: 'It Was A Good Dream',
-      releaseDate: 'February 2020',
-      tags: 'artist / writer / producer / mixing engineer',
-      image: 'https://www.dropbox.com/s/u4sf9j5phjg5ho1/iwagd%20-%20descend.jpeg?raw=1',
-      href: '#'
-    },
   ]
-
-  export function load() {
-    return {
-      props: {
-        items
-      }
-    }
-  }
-
-</script>
-
-<script lang='ts'>
-  import WorkItem from "$src/components/WorkItem.svelte";
-
-  let imagesLoaded = false
-  export let items
 
 </script>
 
